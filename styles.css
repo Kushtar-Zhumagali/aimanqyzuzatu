@@ -143,8 +143,8 @@ input, textarea, button { font-family: inherit; }
    文字区预留底部空间，避免和照片重叠。 */
 .slide-inner:has(.photo-arch) {
   justify-content: flex-start;
-  padding-top: 18px;
-  padding-bottom: calc(46vh + 56px);
+  padding-top: 16px;
+  padding-bottom: calc(40vh + 54px);
 }
 /* 无照片的页（RSVP / 祝福墙）保持垂直居中 */
 
@@ -294,7 +294,7 @@ input, textarea, button { font-family: inherit; }
   left: 50%;
   bottom: 42px;                 /* 刚好在底部 dots 上方 */
   transform: translateX(-50%);
-  height: min(46vh, 408px);
+  height: min(40vh, 372px);
   aspect-ratio: 4 / 5;
   width: auto;
   margin: 0;
@@ -322,7 +322,7 @@ input, textarea, button { font-family: inherit; }
   filter: saturate(0.96);
 }
 /* 全站统一同尺寸：不再用 --small / cover 特例 */
-.photo-arch--small { height: min(46vh, 408px); }
+.photo-arch--small { height: min(40vh, 372px); }
 
 /* ============ 日历组件（Slide 4）· 紧凑以适配更大照片 ============ */
 .kk-calendar {
@@ -332,10 +332,10 @@ input, textarea, button { font-family: inherit; }
 }
 .cal-month {
   font-family: var(--font-script);
-  font-size: clamp(28px, 8vw, 38px);
+  font-size: clamp(24px, 7vw, 32px);
   color: var(--wine);
   text-align: left;
-  margin: 0 0 2px 8px;
+  margin: 0 0 1px 8px;
   font-weight: 400;
   line-height: 1;
 }
@@ -359,7 +359,7 @@ input, textarea, button { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 22px;
+  height: 19px;
   font-variant-numeric: lining-nums tabular-nums;
   position: relative;
 }
