@@ -187,6 +187,7 @@
           : 'Рахмет, түсіндік. Тілегіңіз бізге жетті.';
         statusEl.className = 'rsvp-status is-ok';
         statusEl.textContent = msg + (ok === 'demo' ? ' (демо режим)' : '');
+        if (payload.message) setTimeout(loadWishes, 1200);  // 留言后刷新祝福墙
       } else {
         submitBtn.disabled = false;
         statusEl.className = 'rsvp-status is-error';
@@ -218,6 +219,53 @@
     localStorage.setItem(key, JSON.stringify(arr));
   }
 
+  // ─── 宾客祝福墙 · JSONP 读取（绕过 Apps Script 的 CORS）────
+  function localWishes() {
+    const arr = JSON.parse(localStorage.getItem('wed.rsvp') || '[]');
+    return arr.filter((r) => r.message).map((r) => ({ name: r.name, message: r.message }));
+  }
+
+  function renderWishes(wishes) {
+    const list = $('#wishes-list');
+    if (!list || !wishes || !wishes.length) return;
+    list.innerHTML = '';
+    wishes.slice(-40).reverse().forEach((w) => {
+      const li = document.createElement('li');
+      const n = document.createElement('span');
+      n.className = 'wish-name'; n.textContent = w.name || '—';
+      const m = document.createElement('span');
+      m.className = 'wish-text'; m.textContent = w.message || '';
+      li.append(n, m);
+      list.appendChild(li);
+    });
+  }
+
+  function loadWishes() {
+    if (!$('#wishes-list')) return;
+    const local = localWishes();
+    if (!CFG.rsvpEndpoint) { renderWishes(local); return; }
+
+    const cb = 'aimanWishes' + Date.now();
+    let done = false;
+    window[cb] = (data) => {
+      done = true;
+      const remote = Array.isArray(data) ? data : [];
+      const seen = new Set();
+      const merged = [...remote, ...local].filter((w) => {
+        const k = (w.name || '') + '|' + (w.message || '');
+        if (seen.has(k)) return false;
+        seen.add(k); return true;
+      });
+      renderWishes(merged);
+      delete window[cb];
+    };
+    const s = document.createElement('script');
+    s.src = CFG.rsvpEndpoint + '?action=wishes&callback=' + cb;
+    s.onerror = () => { if (!done) { renderWishes(local); delete window[cb]; } };
+    document.head.appendChild(s);
+    setTimeout(() => { if (!done) renderWishes(local); }, 6000);
+  }
+
   // ─── init ────────────────────────────────────────────
   function init() {
     setupDots();
@@ -226,6 +274,7 @@
     setupMusic();
     setupRsvp();
     setupDemoWobble();
+    loadWishes();
   }
 
   if (document.readyState === 'loading') {
