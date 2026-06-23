@@ -142,10 +142,12 @@ input, textarea, button { font-family: inherit; }
 /* 有照片的页：文字从顶部排，照片绝对定位贴底（位置/大小全站一致）。
    文字区预留底部空间，避免和照片重叠。 */
 .slide-inner:has(.photo-arch) {
-  justify-content: flex-start;
+  justify-content: center;     /* 文字在「照片上方区域」垂直居中 → 上下留白均匀，间距≈日历页 */
   padding-top: 14px;
-  padding-bottom: calc(44vh + 52px);
+  padding-bottom: calc(42vh + 52px);
 }
+/* Cover 例外：大名字保持靠上 */
+.slide-inner--cover { justify-content: flex-start !important; }
 /* 无照片的页（RSVP / 祝福墙）保持垂直居中 */
 
 /* ============ 文字样式 ============ */
@@ -162,8 +164,8 @@ input, textarea, button { font-family: inherit; }
 }
 .script-lg {
   font-family: var(--font-script);
-  font-size: clamp(34px, 9vw, 52px);
-  line-height: 1.08;
+  font-size: clamp(29px, 7.4vw, 42px);   /* 全站大标题统一变小，腾出空间 */
+  line-height: 1.1;
   color: var(--wine);
   margin: 8px 0 4px;
   font-weight: 400;
@@ -209,17 +211,28 @@ input, textarea, button { font-family: inherit; }
 .date-line .zh { font-size: 0.85em; color: var(--ink-mute); margin-left: 1px; }
 
 /* 邀请正文 - Roman caps tracked */
+/* 邀请正文 — 与第 2 页问候同款：Cormorant 斜体、酒红、易读 */
 .invitation-body {
   font-family: var(--font-display);
+  font-style: italic;
   font-weight: 500;
-  font-size: clamp(15px, 4vw, 19px);
-  line-height: 1.6;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  text-transform: uppercase;
-  margin: 12px 0;
-  padding-left: 0.03em;
-  max-width: 32ch;   /* 加宽 → 每行更多字 → 行数变少 */
+  font-size: clamp(21px, 5.8vw, 28px);
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+  color: var(--wine);
+  text-transform: none;
+  margin: 0;
+  max-width: 22ch;
+}
+/* АЙМАННЫҢ 独占一行强调 */
+.inv-name {
+  display: block;
+  font-family: var(--font-script);
+  font-style: normal;
+  font-size: 1.2em;
+  line-height: 1.25;
+  color: var(--wine);
+  margin: 4px 0;
 }
 
 /* 日期正式格式（Slide 4） */
@@ -256,10 +269,10 @@ input, textarea, button { font-family: inherit; }
 .location-addr {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(16px, 4.2vw, 19px);
+  font-size: clamp(18px, 4.8vw, 22px);   /* 地址放大更易读 */
   line-height: 1.5;
   color: var(--ink-mute);
-  margin: 0 0 18px;
+  margin: 2px 0 14px;
 }
 
 /* 父母名字（Slide 6） */
@@ -294,7 +307,7 @@ input, textarea, button { font-family: inherit; }
   left: 50%;
   bottom: 40px;                 /* 刚好在底部 dots 上方 */
   transform: translateX(-50%);
-  height: min(44vh, 400px);
+  height: min(42vh, 384px);
   aspect-ratio: 4 / 5;
   width: auto;
   margin: 0;
@@ -322,7 +335,7 @@ input, textarea, button { font-family: inherit; }
   filter: saturate(0.96);
 }
 /* 全站统一同尺寸：不再用 --small / cover 特例 */
-.photo-arch--small { height: min(44vh, 400px); }
+.photo-arch--small { height: min(42vh, 384px); }
 
 /* ============ 日历组件（Slide 4）· 紧凑以适配更大照片 ============ */
 .kk-calendar {
@@ -383,13 +396,13 @@ input, textarea, button { font-family: inherit; }
 /* ============ 2GIS 按钮 ============ */
 .btn-2gis {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px;
-  padding: 13px 28px;
+  gap: 7px;
+  padding: 10px 22px;                       /* 按钮缩小 */
   font-family: var(--font-sans);            /* 用 Inter，2GIS 数字+拉丁更清晰统一 */
   font-weight: 600;
-  font-size: clamp(13px, 3.6vw, 15px);
+  font-size: clamp(12px, 3.2vw, 13.5px);
   font-variant-numeric: lining-nums;        /* «2» 用等高数字，不再是旧式小号 */
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--wine);
   color: var(--bg);
