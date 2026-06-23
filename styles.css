@@ -106,11 +106,9 @@ input, textarea, button { font-family: inherit; }
   height: 100vh;
   height: 100dvh;
   scroll-snap-align: start;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;          /* 不滚动：每页内容塞进一屏 */
   scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
+  position: relative;        /* 照片相对整屏(.slide)定位 → 全站同一位置 */
   background: var(--bg);
 }
 .slide::-webkit-scrollbar { display: none; }
@@ -136,10 +134,10 @@ input, textarea, button { font-family: inherit; }
   justify-content: center;
   text-align: center;
   padding: 16px 24px 72px;
-  min-height: calc(100vh - 64px);
-  min-height: calc(100dvh - 64px);
-  position: relative;
+  min-height: calc(100vh - 58px);
+  min-height: calc(100dvh - 58px);
   gap: 2px;
+  /* 注意：不设 position:relative，让照片(absolute)锚定到整屏 .slide */
 }
 /* 有照片的页：文字从顶部排，照片绝对定位贴底（位置/大小全站一致）。
    文字区预留底部空间，避免和照片重叠。 */
@@ -214,13 +212,13 @@ input, textarea, button { font-family: inherit; }
 .invitation-body {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(17px, 4.4vw, 21px);
-  line-height: 1.85;
-  letter-spacing: 0.06em;
+  font-size: clamp(16px, 4.2vw, 20px);
+  line-height: 1.65;
+  letter-spacing: 0.05em;
   color: var(--ink);
   text-transform: uppercase;
-  margin: 28px 0;
-  padding-left: 0.06em;
+  margin: 16px 0;
+  padding-left: 0.05em;
   max-width: 24ch;
 }
 
