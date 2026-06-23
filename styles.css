@@ -143,8 +143,8 @@ input, textarea, button { font-family: inherit; }
    文字区预留底部空间，避免和照片重叠。 */
 .slide-inner:has(.photo-arch) {
   justify-content: flex-start;
-  padding-top: 16px;
-  padding-bottom: calc(40vh + 54px);
+  padding-top: 14px;
+  padding-bottom: calc(44vh + 52px);
 }
 /* 无照片的页（RSVP / 祝福墙）保持垂直居中 */
 
@@ -212,14 +212,14 @@ input, textarea, button { font-family: inherit; }
 .invitation-body {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(16px, 4.2vw, 20px);
-  line-height: 1.65;
-  letter-spacing: 0.05em;
+  font-size: clamp(15px, 4vw, 19px);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
   color: var(--ink);
   text-transform: uppercase;
-  margin: 16px 0;
-  padding-left: 0.05em;
-  max-width: 24ch;
+  margin: 12px 0;
+  padding-left: 0.03em;
+  max-width: 32ch;   /* 加宽 → 每行更多字 → 行数变少 */
 }
 
 /* 日期正式格式（Slide 4） */
@@ -292,9 +292,9 @@ input, textarea, button { font-family: inherit; }
 .photo-arch {
   position: absolute;
   left: 50%;
-  bottom: 42px;                 /* 刚好在底部 dots 上方 */
+  bottom: 40px;                 /* 刚好在底部 dots 上方 */
   transform: translateX(-50%);
-  height: min(40vh, 372px);
+  height: min(44vh, 400px);
   aspect-ratio: 4 / 5;
   width: auto;
   margin: 0;
@@ -322,7 +322,7 @@ input, textarea, button { font-family: inherit; }
   filter: saturate(0.96);
 }
 /* 全站统一同尺寸：不再用 --small / cover 特例 */
-.photo-arch--small { height: min(40vh, 372px); }
+.photo-arch--small { height: min(44vh, 400px); }
 
 /* ============ 日历组件（Slide 4）· 紧凑以适配更大照片 ============ */
 .kk-calendar {
@@ -385,10 +385,11 @@ input, textarea, button { font-family: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px;
   padding: 13px 28px;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(15px, 4vw, 17px);
-  letter-spacing: 0.16em;
+  font-family: var(--font-sans);            /* 用 Inter，2GIS 数字+拉丁更清晰统一 */
+  font-weight: 600;
+  font-size: clamp(13px, 3.6vw, 15px);
+  font-variant-numeric: lining-nums;        /* «2» 用等高数字，不再是旧式小号 */
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   background: var(--wine);
   color: var(--bg);
