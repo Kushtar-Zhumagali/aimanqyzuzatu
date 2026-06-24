@@ -133,7 +133,7 @@ input, textarea, button { font-family: inherit; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 16px 24px 72px;
+  padding: 12px 24px 56px;
   min-height: calc(100vh - 58px);
   min-height: calc(100dvh - 58px);
   gap: 2px;
@@ -175,7 +175,7 @@ input, textarea, button { font-family: inherit; }
   font-size: clamp(24px, 6.4vw, 36px);
   line-height: 1.15;
   color: var(--wine);
-  margin: 6px 0 14px;
+  margin: 2px 0 6px;
   font-weight: 400;
 }
 .script-inline {
@@ -287,7 +287,7 @@ input, textarea, button { font-family: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ink);
-  margin: 4px 0 22px;
+  margin: 2px 0 10px;
   padding-left: 0.08em;
 }
 .parents .amp {
@@ -418,20 +418,20 @@ input, textarea, button { font-family: inherit; }
 /* ============ RSVP 表单（Slide 6） ============ */
 .rsvp-title {
   font-family: var(--font-script);
-  font-size: clamp(28px, 7.4vw, 36px);
+  font-size: clamp(23px, 6vw, 30px);   /* 缩小，给人数字段腾位置 */
   color: var(--wine);
-  margin: 16px 0 14px;
+  margin: 10px 0 12px;
   font-weight: 400;
 }
 .rsvp-form {
   display: grid;
-  gap: 14px;
+  gap: 9px;
   width: 100%;
   max-width: 380px;
   margin: 0 auto;
   text-align: left;
 }
-.field { display: grid; gap: 6px; }
+.field { display: grid; gap: 4px; }
 .rsvp-form input[type="text"],
 .rsvp-form input[type="number"],
 .rsvp-form textarea {
@@ -439,7 +439,7 @@ input, textarea, button { font-family: inherit; }
   border: 0;
   border-bottom: 1px solid var(--wine-soft);
   background: transparent;
-  padding: 10px 0 8px;
+  padding: 7px 0 6px;
   font-family: var(--font-display);
   font-size: 17px;
   color: var(--ink);
@@ -455,14 +455,14 @@ input, textarea, button { font-family: inherit; }
   outline: none;
   border-bottom-color: var(--wine);
 }
-.rsvp-form textarea { min-height: 56px; resize: none; }
+.rsvp-form textarea { min-height: 38px; resize: none; }
 
 .radio-row {
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .radio-pill {
   display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px;
+  padding: 8px 14px;
   border: 1px solid var(--wine-soft);
   border-radius: var(--radius-sm);
   background: var(--paper);
@@ -555,12 +555,12 @@ input, textarea, button { font-family: inherit; }
 .contacts {
   display: flex; flex-direction: column;
   width: 100%; max-width: 380px;
-  margin: 22px auto 12px;
+  margin: 12px auto 6px;
   gap: 1px;
 }
 .contacts a {
   display: flex; justify-content: space-between; align-items: baseline;
-  padding: 12px 8px;
+  padding: 9px 8px;
   border-top: 1px solid var(--wine-soft);
   font-family: var(--font-display);
   font-size: 16.5px;

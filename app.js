@@ -138,11 +138,12 @@
     const countField = $('#count-field');
     const statusEl   = $('#rsvp-status');
 
-    if (countField) countField.hidden = true;
+    if (countField) countField.hidden = false;   // 默认显示「几人到场」
 
     form.addEventListener('change', (e) => {
       if (e.target.name === 'attending' && countField) {
-        countField.hidden = e.target.value !== 'yes';
+        // 仅在明确选「不能来」时隐藏人数；其余始终显示
+        countField.hidden = e.target.value === 'no';
       }
     });
 
