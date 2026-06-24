@@ -87,7 +87,7 @@
     const btn   = $('#music-btn');
     if (!CFG.music || !audio || !btn) { if (btn) btn.hidden = true; return; }
     audio.src = CFG.music;
-    audio.preload = 'auto';
+    audio.preload = 'none';   // 不自动下载音乐，点播放/首次交互时才取 → 省流量
 
     fetch(CFG.music, { method: 'HEAD' }).catch(() => {}).then((r) => {
       if (!r || !r.ok) btn.hidden = true;
